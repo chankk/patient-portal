@@ -2,7 +2,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
-import CssBaseline from "@mui/material/CssBaseline";
+import NextLink from "next/link";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Badge, IconButton, Menu, MenuItem } from "@mui/material";
@@ -50,7 +50,8 @@ export default function TopAppBar() {
 				<Typography
 					variant="h6"
 					noWrap
-					component="div">
+					component={NextLink}
+					href="/">
 					Patient Portal
 				</Typography>
 				<Box>

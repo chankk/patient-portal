@@ -2,20 +2,23 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
-import TextCard from "./basic-card";
+import Card from "@/app/basic-card";
 
 const cardData = [
 	{
 		heading: "Health Records",
 		content: "Access your test results, immunization record and other medical information.",
+		href: "/health-records",
 	},
 	{
 		heading: "Past Visits",
 		content: "Review past medical visits, such as hospitlizations and specialist appointments.",
+		href: "/past-visits",
 	},
 	{
 		heading: "Doctor Directory",
 		content: "Connect with your healthcare providers, find contact information and schedule appointments.",
+		href: "/doctor-directory",
 	},
 ];
 
@@ -25,9 +28,10 @@ const cards = cardData.map((card) => {
 			item
 			key={card.heading}
 			lg={3}>
-			<TextCard
+			<Card
 				heading={card.heading}
-				content={card.content}></TextCard>
+				content={card.content}
+				href={card.href}></Card>
 		</Grid>
 	);
 });

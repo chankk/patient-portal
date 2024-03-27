@@ -1,13 +1,16 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
+import MaterialCard from "@mui/material/Card";
+import NextLink from "next/link";
 import Typography from "@mui/material/Typography";
 
-export default function BasicCard({ heading, content }) {
+export default function Card({ content, heading, href }) {
 	return (
-		<Card>
-			<CardActionArea>
+		<MaterialCard sx={{ flexGrow: "1" }}>
+			<CardActionArea
+				component={NextLink}
+				href={href}>
 				<CardContent>
 					<Typography
 						gutterBottom
@@ -22,6 +25,6 @@ export default function BasicCard({ heading, content }) {
 					</Typography>
 				</CardContent>
 			</CardActionArea>
-		</Card>
+		</MaterialCard>
 	);
 }
