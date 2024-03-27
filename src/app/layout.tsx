@@ -1,12 +1,11 @@
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "@/app/theme";
 import TopAppBar from "@/app/navigation/top-app-bar";
 import NavigationDrawer from "./navigation/nav-drawer";
 import { Box, CssBaseline } from "@mui/material";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -20,14 +19,16 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
+			<body>
 				<AppRouterCacheProvider>
-					<CssBaseline />
-					<Box sx={{ display: "flex" }}>
-						<TopAppBar></TopAppBar>
-						<NavigationDrawer></NavigationDrawer>
-						{children}
-					</Box>
+					<ThemeProvider theme={theme}>
+						<CssBaseline />
+						<Box sx={{ display: "flex" }}>
+							<TopAppBar></TopAppBar>
+							<NavigationDrawer></NavigationDrawer>
+							{children}
+						</Box>
+					</ThemeProvider>
 				</AppRouterCacheProvider>
 			</body>
 		</html>
