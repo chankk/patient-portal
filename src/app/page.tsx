@@ -1,30 +1,35 @@
-import Box from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+
 import TextCard from "./basic-card";
 
 const cardData = [
 	{
 		heading: "Health Records",
-		content: "Access your test results, immunizations and other medical information.",
+		content: "Access your test results, immunization record and other medical information.",
 	},
 	{
-		heading: "Appointment Calendar",
-		content: "View, schedule, and manage your upcoming medical appointments.",
+		heading: "Past Visits",
+		content: "Review past medical visits, such as hospitlizations and specialist appointments.",
 	},
 	{
 		heading: "Doctor Directory",
-		content: "Connect with your healthcare providers and find up to date contact information.",
+		content: "Connect with your healthcare providers, find contact information and schedule appointments.",
 	},
 ];
 
 const cards = cardData.map((card) => {
 	return (
-		<TextCard
+		<Grid
+			item
 			key={card.heading}
-			heading={card.heading}
-			content={card.content}></TextCard>
+			lg={3}>
+			<TextCard
+				heading={card.heading}
+				content={card.content}></TextCard>
+		</Grid>
 	);
 });
 
@@ -43,13 +48,12 @@ export default function Home() {
 				gutterBottom>
 				{greeting}
 			</Typography>
-			<Stack
-				direction="row"
-				spacing={{ lg: 3 }}
-				my={{ lg: 3 }}
-				flexWrap="wrap">
+			<Grid
+				container
+				my={1}
+				spacing={3}>
 				{cards}
-			</Stack>
+			</Grid>
 		</Box>
 	);
 }
