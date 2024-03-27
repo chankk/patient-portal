@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
 import TextCard from "./basic-card";
@@ -38,16 +37,9 @@ const greeting = "It's great to have you here.";
 
 export default function Home() {
 	return (
-		<Box
-			component="main"
-			sx={{ flexGrow: 1, p: 3 }}>
-			<Toolbar />
+		<Box component="main">
 			<Typography variant="h4">Hello, {name}!</Typography>
-			<Typography
-				variant="h5"
-				gutterBottom>
-				{greeting}
-			</Typography>
+			<Typography variant="h5">{greeting}</Typography>
 			<Grid
 				container
 				my={1}

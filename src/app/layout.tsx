@@ -1,11 +1,14 @@
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import type { Metadata } from "next";
-import "./globals.css";
-import { ThemeProvider } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import theme from "@/app/theme";
+import Toolbar from "@mui/material/Toolbar";
+
+import "./globals.css";
+import NavigationDrawer from "@/app/navigation/nav-drawer";
 import TopAppBar from "@/app/navigation/top-app-bar";
-import NavigationDrawer from "./navigation/nav-drawer";
-import { Box, CssBaseline } from "@mui/material";
 
 export const metadata: Metadata = {
 	title: "Patient Portal",
@@ -26,7 +29,10 @@ export default function RootLayout({
 						<Box sx={{ display: "flex" }}>
 							<TopAppBar></TopAppBar>
 							<NavigationDrawer></NavigationDrawer>
-							{children}
+							<Box sx={{ p: 3 }}>
+								<Toolbar />
+								{children}
+							</Box>
 						</Box>
 					</ThemeProvider>
 				</AppRouterCacheProvider>
