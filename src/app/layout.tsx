@@ -2,6 +2,9 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import TopAppBar from "@/app/navigation/top-app-bar";
+import NavigationDrawer from "./navigation/nav-drawer";
+import { Box, CssBaseline } from "@mui/material";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +21,14 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+				<AppRouterCacheProvider>
+					<CssBaseline />
+					<Box sx={{ display: "flex" }}>
+						<TopAppBar></TopAppBar>
+						<NavigationDrawer></NavigationDrawer>
+						{children}
+					</Box>
+				</AppRouterCacheProvider>
 			</body>
 		</html>
 	);
