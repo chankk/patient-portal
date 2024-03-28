@@ -8,12 +8,12 @@ const cardData = [
 	{
 		heading: "Appointments",
 		content: "Phasellus vitae augue tempor, ultrices mi condimentum, sagittis lacus.",
-		href: "",
+		href: "/past-visits/appointment",
 	},
 	{
 		heading: "Hospitalizations",
 		content: "Phasellus vitae augue tempor, ultrices mi condimentum, sagittis lacus.",
-		href: "",
+		href: "/past-visits/hospitalization",
 	},
 ];
 
@@ -31,10 +31,10 @@ const cards = cardData.map((card) => {
 	);
 });
 
-export default function Health() {
+export default function PastVisits() {
 	return (
 		<Box component="main">
-			<Typography variant="h4">Health Records</Typography>
+			<Typography variant="h4">Past Visits</Typography>
 			<Grid
 				container
 				my={1}
