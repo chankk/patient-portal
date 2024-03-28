@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
-import Card from "@/app/basic-card";
+import Card from "@/app/components/card";
 
 const cardData = [
 	{
