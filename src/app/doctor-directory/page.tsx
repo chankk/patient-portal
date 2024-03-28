@@ -8,12 +8,12 @@ const cardData = [
 	{
 		heading: "Tara Williams",
 		content: "Phasellus vitae augue tempor, ultrices mi condimentum, sagittis lacus.",
-		href: "",
+		href: "/doctor-directory/doctor",
 	},
 	{
 		heading: "Abraham Jones",
 		content: "Phasellus vitae augue tempor, ultrices mi condimentum, sagittis lacus.",
-		href: "",
+		href: "/doctor-directory/doctor",
 	},
 ];
 
