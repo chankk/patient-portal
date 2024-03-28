@@ -16,17 +16,21 @@ const columns: GridColDef<(typeof rows)[number]>[] = [
 	{
 		field: "purpose",
 		headerName: "Purpose",
-		width: 110,
+		width: 200,
 		editable: false,
 	},
 	{
 		field: "details",
 		headerName: "Details",
 		type: "string",
-		width: 160,
+		width: 500,
 	},
 ];
-const rows = [{ id: 1, date: new Date("2023-11-25"), purpose: "Normal", details: "" }];
+const rows = [
+	{ id: 1, date: new Date("2023-11-25"), purpose: "Routine checkup", details: "" },
+	{ id: 2, date: new Date("2023-10-25"), purpose: "Medication check-in", details: "" },
+];
+
 export default function Doctor() {
 	return (
 		<Box>
@@ -38,7 +42,7 @@ export default function Doctor() {
 				<Grid
 					item
 					xs={12}
-					md={6}>
+					md={8}>
 					<Typography variant="h4">Tara Williams, MD</Typography>
 					<Typography
 						variant="h5"
@@ -57,8 +61,10 @@ export default function Doctor() {
 				<Grid
 					item
 					xs={12}
-					md={6}>
-					<Stack direction="column">
+					md={4}>
+					<Stack
+						direction="column"
+						spacing={1}>
 						<Button variant="contained">Book Appointment</Button>
 						<Button variant="contained">Contact Team</Button>
 						<Button variant="text">View Prescriptions</Button>
@@ -68,7 +74,7 @@ export default function Doctor() {
 
 			<Box>
 				<Typography variant="h6">Past Appointments</Typography>
-				<Box sx={{ height: 300, width: "100%" }}>
+				<Box sx={{ height: 250, width: "100%" }}>
 					<DataGrid
 						rows={rows}
 						columns={columns}
