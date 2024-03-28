@@ -1,9 +1,9 @@
 import Box from "@mui/material/Box";
-import DataTable from "@/app/components/data-table";
-import { GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { HospitalizationProps } from "@/app/types";
 import Typography from "@mui/material/Typography";
 
-const columns: GridColDef<(typeof rows)[number]>[] = [
+const columns: GridColDef<HospitalizationProps>[] = [
 	{
 		field: "date",
 		headerName: "Date",
@@ -42,7 +42,7 @@ const columns: GridColDef<(typeof rows)[number]>[] = [
 	},
 ];
 
-const rows = [
+const rows: HospitalizationProps[] = [
 	{ id: 1, date: new Date("2023-11-25"), diagnosis: "broken leg", treatment: "surgery", doctor: "Phineas Lee", hospital: "Goodwin Health", details: "" },
 ];
 
@@ -50,10 +50,21 @@ export default function Hospitalization() {
 	return (
 		<Box>
 			<Typography variant="h4">Hospitalizations</Typography>
-			<DataTable
-				rows={rows}
-				columns={columns}
-			/>
+			<Box sx={{ height: 400, width: "100%" }}>
+				<DataGrid
+					rows={rows}
+					columns={columns}
+					initialState={{
+						pagination: {
+							paginationModel: {
+								pageSize: 5,
+							},
+						},
+					}}
+					pageSizeOptions={[5]}
+					disableRowSelectionOnClick
+				/>
+			</Box>
 		</Box>
 	);
 }

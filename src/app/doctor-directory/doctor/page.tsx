@@ -4,8 +4,9 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DoctorProps } from "@/app/types";
 
-const columns: GridColDef<(typeof rows)[number]>[] = [
+const cols: GridColDef<DoctorProps>[] = [
 	{
 		field: "date",
 		headerName: "Date",
@@ -26,7 +27,7 @@ const columns: GridColDef<(typeof rows)[number]>[] = [
 		width: 500,
 	},
 ];
-const rows = [
+const rows: DoctorProps[] = [
 	{ id: 1, date: new Date("2023-11-25"), purpose: "Routine checkup", details: "" },
 	{ id: 2, date: new Date("2023-10-25"), purpose: "Medication check-in", details: "" },
 ];
@@ -71,13 +72,12 @@ export default function Doctor() {
 					</Stack>
 				</Grid>
 			</Grid>
-
 			<Box>
 				<Typography variant="h6">Past Appointments</Typography>
 				<Box sx={{ height: 250, width: "100%" }}>
 					<DataGrid
 						rows={rows}
-						columns={columns}
+						columns={cols}
 						initialState={{
 							pagination: {
 								paginationModel: {

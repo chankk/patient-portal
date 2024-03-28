@@ -1,9 +1,9 @@
 import Box from "@mui/material/Box";
-import DataTable from "@/app/components/data-table";
-import { GridColDef } from "@mui/x-data-grid/";
+import { AppointmentProps } from "@/app/types";
+import { DataGrid, GridColDef } from "@mui/x-data-grid/";
 import Typography from "@mui/material/Typography";
 
-const columns: GridColDef<(typeof rows)[number]>[] = [
+const columns: GridColDef<AppointmentProps>[] = [
 	{
 		field: "date",
 		headerName: "Date",
@@ -42,7 +42,7 @@ const columns: GridColDef<(typeof rows)[number]>[] = [
 	},
 ];
 
-const rows = [
+const rows: AppointmentProps[] = [
 	{ id: 2, date: new Date("2023-12-12"), doctor: "Abigail Hill", type: "Psychology", purpose: "Counseling", location: "Trinity Health", details: "" },
 	{ id: 1, date: new Date("2023-11-25"), doctor: "Abraham Jones", type: "Psychiatry", purpose: "Assessment", location: "Trinity Health", details: "" },
 ];
@@ -52,10 +52,21 @@ export default function Appointment() {
 		<Box>
 			<Typography variant="h4">Past Appointments</Typography>
 			<Box sx={{ height: 400, width: "100%" }}>
-				<DataTable
-					rows={rows}
-					columns={columns}
-				/>
+				<Box sx={{ height: 400, width: "100%" }}>
+					<DataGrid
+						rows={rows}
+						columns={columns}
+						initialState={{
+							pagination: {
+								paginationModel: {
+									pageSize: 5,
+								},
+							},
+						}}
+						pageSizeOptions={[5]}
+						disableRowSelectionOnClick
+					/>
+				</Box>
 			</Box>
 		</Box>
 	);

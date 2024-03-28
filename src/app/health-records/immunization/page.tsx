@@ -1,9 +1,9 @@
 import Box from "@mui/material/Box";
-import DataTable from "@/app/components/data-table";
-import { GridColDef } from "@mui/x-data-grid/";
+import { DataGrid, GridColDef } from "@mui/x-data-grid/";
+import { ImmunizationProps } from "@/app/types";
 import Typography from "@mui/material/Typography";
 
-const columns: GridColDef<(typeof rows)[number]>[] = [
+const columns: GridColDef<ImmunizationProps>[] = [
 	{
 		field: "date",
 		headerName: "Date",
@@ -31,7 +31,7 @@ const columns: GridColDef<(typeof rows)[number]>[] = [
 	},
 ];
 
-const rows = [
+const rows: ImmunizationProps[] = [
 	{ id: 1, date: new Date("2023-12-25"), vaccine: "Influencza", disease: "Common Flu", details: "" },
 	{ id: 2, date: new Date("2022-09-25"), vaccine: "Influencza", disease: "Common Flu", details: "" },
 	{ id: 3, date: new Date("2021-10-12"), vaccine: "Influencza", disease: "Common Flu", details: "" },
@@ -48,9 +48,18 @@ export default function Immunization() {
 		<Box>
 			<Typography variant="h4">Immunization</Typography>
 			<Box sx={{ height: 400, width: "100%" }}>
-				<DataTable
+				<DataGrid
 					rows={rows}
 					columns={columns}
+					initialState={{
+						pagination: {
+							paginationModel: {
+								pageSize: 5,
+							},
+						},
+					}}
+					pageSizeOptions={[5]}
+					disableRowSelectionOnClick
 				/>
 			</Box>
 		</Box>

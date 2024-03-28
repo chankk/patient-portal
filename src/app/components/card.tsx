@@ -1,11 +1,12 @@
 import * as React from "react";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
+import { CardProps } from "@/app/types";
 import MaterialCard from "@mui/material/Card";
 import NextLink from "next/link";
 import Typography from "@mui/material/Typography";
 
-export default function Card({ content, heading, href }) {
+export default function Card({ content, heading, href }: CardProps) {
 	return (
 		<MaterialCard sx={{ flexGrow: "1" }}>
 			<CardActionArea
