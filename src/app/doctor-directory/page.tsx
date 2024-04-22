@@ -1,37 +1,11 @@
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-
 import Card from "@/app/components/card";
+import { fetchDoctors } from "@/app/lib/data";
 
-const cardData = [
-	{
-		heading: "Tara Williams",
-		content: "Phasellus vitae augue tempor, ultrices mi condimentum, sagittis lacus.",
-		href: "/doctor-directory/doctor",
-	},
-	{
-		heading: "Abraham Jones",
-		content: "Phasellus vitae augue tempor, ultrices mi condimentum, sagittis lacus.",
-		href: "/doctor-directory/doctor",
-	},
-];
-
-const cards = cardData.map((card) => {
-	return (
-		<Grid
-			item
-			key={card.heading}
-			xs={3}>
-			<Card
-				heading={card.heading}
-				content={card.content}
-				href={card.href}></Card>
-		</Grid>
-	);
-});
-
-export default function DoctorDirectory() {
+export default async function DoctorDirectory() {
+	const doctors = await fetchDoctors();
 	return (
 		<Box component="main">
 			<Typography variant="h4">Doctor Directory</Typography>
@@ -39,7 +13,18 @@ export default function DoctorDirectory() {
 				container
 				my={1}
 				spacing={3}>
-				{cards}
+				{doctors.map((doctor) => (
+					<Grid
+						item
+						key={doctor.id}
+						xs={3}>
+						<Card
+							heading={`${doctor.first_name} ${doctor.last_name}`}
+							content={doctor.specialty}
+							href="/doctor-directory/doctor"
+						/>
+					</Grid>
+				))}
 			</Grid>
 		</Box>
 	);
