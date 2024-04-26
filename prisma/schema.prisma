@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model doctor {
+  id                String            @id @db.Char(9)
+  first_name        String            @db.VarChar(32)
+  last_name         String            @db.VarChar(32)
+  gender            String?           @db.VarChar(32)
+  specialization_id Int?
+  location_id       Int?
+  doctor_specialty  doctor_specialty? @relation(fields: [specialization_id], references: [id], onUpdate: NoAction, map: "fk__doctor__doctor_specialty")
+  location          location?         @relation(fields: [location_id], references: [id], onUpdate: NoAction, map: "fk__doctor__location")
+}
+
+model doctor_specialty {
+  id     Int      @id @default(autoincrement())
+  name   String   @unique @db.VarChar(50)
+  doctor doctor[]
+}
+
+model location {
+  id            Int           @id @default(autoincrement())
+  type_id       Int
+  name          String        @db.VarChar(64)
+  address       String        @db.VarChar(64)
+  locality      String        @db.VarChar(64)
+  postal_code   String        @db.Char(6)
+  phone_number  String        @db.Char(10)
+  fax_number    String?       @db.Char(10)
+  doctor        doctor[]
+  location_type location_type @relation(fields: [type_id], references: [id], onDelete: SetNull, onUpdate: NoAction, map: "fk__location__location_type")
+}
+
+model location_type {
+  id       Int        @id @default(autoincrement())
+  name     String     @unique @db.VarChar(50)
+  location location[]
+}
