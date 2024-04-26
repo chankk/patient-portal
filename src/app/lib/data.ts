@@ -1,16 +1,43 @@
-import {sql} from '@vercel/postgres';
-import {Doctor} from '@/app/lib/definitions';
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
+// fetch only what's needed, reduce the amount of data transfered for each request
+// and the amount of JS needed to transform data in memory
 
 export async function fetchDoctors(){
-    try{
-        const data = await sql<Doctor>
-        `SELECT doctor.id, doctor.first_name, doctor.last_name, doctor_specialty.name AS specialty
-        FROM doctor
-        JOIN doctor_specialty
-        ON doctor.specialization_id = doctor_specialty.id;`;
-        return data.rows;
+    try {
+        const doctors = await prisma.doctor.findMany({
+            include: {
+                doctor_specialty: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
+        });
+        return doctors;
     } catch (error) {
         console.error("Database Error:", error);
         throw new Error("Failed to fetch doctors");
     }
+}
+
+export async function fetchDoctor(doctorID: string){
+    try {
+        const doctor = await prisma.doctor.findFirstOrThrow({
+            include:{
+                doctor_specialty:  {
+                    select: {name: true}
+                },
+                location: {
+                    select: {name:true, address:true, locality: true, postal_code: true, phone_number: true, fax_number: true}
+                }
+            },
+            where: {id: doctorID}
+        });
+        return doctor;
+    } catch (error) {
+        console.error("Database error:", error);
+        throw new Error(`Failed to fetch doctor with ID: ${doctorID}`);
+    }
+
 }

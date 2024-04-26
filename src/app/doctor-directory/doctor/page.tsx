@@ -5,6 +5,8 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { DoctorProps } from "@/app/types";
+import { fetchDoctor } from "@/app/lib/data";
+import { notFound } from "next/navigation";
 
 const cols: GridColDef<DoctorProps>[] = [
 	{
@@ -32,40 +34,30 @@ const rows: DoctorProps[] = [
 	{ id: 2, date: new Date("2023-10-25"), purpose: "Medication check-in", details: "" },
 ];
 
-export default function Doctor() {
+export default async function Doctor({ searchParams }: { searchParams: { id: string } }) {
+	const doctor = await fetchDoctor(searchParams.id).catch((error) => notFound());
 	return (
 		<Box>
-			<Grid
-				container
-				direction="row"
-				justifyContent="space-between"
-				alignItems="flex-start">
-				<Grid
-					item
-					xs={12}
-					md={8}>
-					<Typography variant="h4">Tara Williams, MD</Typography>
-					<Typography
-						variant="h5"
-						gutterBottom>
-						General Practitioner
+			<Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
+				<Grid item xs={12} md={8}>
+					<Typography variant="h4">
+						{doctor.first_name} {doctor.last_name}
 					</Typography>
-					<Typography
-						variant="body1"
-						component="address"
-						gutterBottom>
-						<b>Address: </b> 4116 Clove Crossing T5K 1Y3 Edmonton AB <br />
-						<b>Phone: </b> 250-206-8989 <br />
+					<Typography variant="h5" gutterBottom>
+						{doctor.doctor_specialty?.name}
+					</Typography>
+					<Typography variant="body1" component="address" gutterBottom>
+						<b>Address: </b>
+						{doctor.location?.address} {doctor.location?.postal_code} {doctor.location?.locality} AB
+						<br />
+						<b>Phone: </b>
+						{doctor.location?.phone_number}
+						<br />
 						<b>Hours: </b> 9:00am to 5:00pm Monday to Friday
 					</Typography>
 				</Grid>
-				<Grid
-					item
-					xs={12}
-					md={4}>
-					<Stack
-						direction="column"
-						spacing={1}>
+				<Grid item xs={12} md={4}>
+					<Stack direction="column" spacing={1}>
 						<Button variant="contained">Book Appointment</Button>
 						<Button variant="contained">Contact Team</Button>
 						<Button variant="text">View Prescriptions</Button>
