@@ -19,8 +19,8 @@ export default function Map() {
 			const mapView = new MapView({
 				container: mapRef.current,
 				map: map,
-				center: [0, 0], // [longitude, latitude]
-				zoom: 3,
+				center: [-114, 55],
+				zoom: 4,
 			});
 		}
 	}, []);
