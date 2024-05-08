@@ -32,10 +32,12 @@ model location {
   address       String        @db.VarChar(64)
   locality      String        @db.VarChar(64)
   postal_code   String        @db.Char(6)
+  latitude      Decimal       @db.Decimal(8, 6)
+  longitude     Decimal       @db.Decimal(9, 6)
   phone_number  String        @db.Char(10)
   fax_number    String?       @db.Char(10)
   doctor        doctor[]
-  location_type location_type @relation(fields: [type_id], references: [id], onDelete: SetNull, onUpdate: NoAction, map: "fk__location__location_type")
+  location_type location_type @relation(fields: [type_id], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "fk__location__location_type")
 }
 
 model location_type {

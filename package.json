@@ -8,6 +8,7 @@
 		"start": "next start",
 		"lint": "next lint",
 		"studio": "npx prisma studio",
+		"migrate": "npx prisma migrate",
 		"postinstall": "prisma generate"
 	},
 	"dependencies": {
