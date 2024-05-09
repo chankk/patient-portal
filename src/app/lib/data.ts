@@ -1,7 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
-// fetch only what's needed, reduce the amount of data transfered for each request
-// and the amount of JS needed to transform data in memory
+import prisma from "@/app/lib/db";
 
 export async function fetchDoctors(){
     try {
