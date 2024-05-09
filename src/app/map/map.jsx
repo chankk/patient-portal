@@ -34,6 +34,14 @@ const popupTemplate = {
 	content: "{address} {locality} AB",
 };
 
+const renderer = {
+	type: "simple",
+	symbol: {
+		type: "simple-marker",
+		color: "#8e5776",
+	},
+};
+
 export default function Map({ locations }) {
 	const mapRef = useRef(null);
 
@@ -74,6 +82,7 @@ export default function Map({ locations }) {
 				spatialReference: { wkid: 4326 },
 				source: graphics,
 				popupTemplate: popupTemplate,
+				renderer: renderer,
 			});
 
 			map.add(featureLayer);
