@@ -39,5 +39,15 @@ export async function fetchDoctor(doctorID: string){
         console.error("Database error:", error);
         throw new Error(`Failed to fetch doctor with ID: ${doctorID}`);
     }
+}
 
+export async function fetchLocations(){
+    try {
+        const locations = await prisma.location.findMany(); // change to findMany
+        return JSON.stringify(locations);
+    }
+    catch (error){
+        console.error("Database error:", error);
+        throw new Error(`Failed to fetch locations`);
+    }
 }

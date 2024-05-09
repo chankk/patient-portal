@@ -10,19 +10,7 @@ import Graphic from "@arcgis/core/Graphic.js";
 
 config.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
-const graphic = new Graphic({
-	geometry: new Point({
-		longitude: -114.81108100184484,
-		latitude: 55.256313362295025,
-		spatialReference: {
-			wkid: 4326,
-		},
-	}),
-});
-
-const graphics = [graphic];
-
-export default function Map() {
+export default function Map({ locations }) {
 	const mapRef = useRef(null);
 
 	useEffect(() => {
@@ -37,34 +25,31 @@ export default function Map() {
 				center: [-114, 55],
 				zoom: 4,
 			});
+			if (locations) {
+				const graphics = locations.map((location) => {
+					return new Graphic(
+						new Point({
+							id: location.id,
+							longitude: location.longitude,
+							latitude: location.latitude,
+							spatialReference: {
+								wkid: 4326,
+							},
+						})
+					);
+				});
 
-			const featureLayer = new FeatureLayer({
-				fields: [
-					{
-						name: "id",
-						alias: "ID",
-						type: "oid",
-					},
-					{
-						name: "latitude",
-						alias: "Latitude",
-						type: "double",
-					},
-					{
-						name: "longitude",
-						alias: "Longitude",
-						type: "double",
-					},
-				],
-				objectIdField: "id",
-				geometryType: "point",
-				spatialReference: { wkid: 4326 },
-				source: graphics,
-			});
-
-			map.add(featureLayer);
+				const featureLayer = new FeatureLayer({
+					fields: graphics.fields,
+					objectIdField: "id",
+					geometryType: "point",
+					spatialReference: { wkid: 4326 },
+					source: graphics,
+				});
+				map.add(featureLayer);
+			}
 		}
-	}, []);
+	}, [locations]);
 
 	return (
 		<div className={styles.container}>
