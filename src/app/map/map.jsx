@@ -10,6 +10,30 @@ import Graphic from "@arcgis/core/Graphic.js";
 
 config.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
+const fields = [
+	{
+		name: "id",
+		type: "oid",
+	},
+	{
+		name: "name",
+		type: "string",
+	},
+	{
+		name: "address",
+		type: "string",
+	},
+	{
+		name: "locality",
+		type: "string",
+	},
+];
+
+const popupTemplate = {
+	title: "{name}",
+	content: "{address} {locality} AB",
+};
+
 export default function Map({ locations }) {
 	const mapRef = useRef(null);
 
@@ -25,55 +49,34 @@ export default function Map({ locations }) {
 				center: [-114, 55],
 				zoom: 4,
 			});
-			if (locations) {
-				const graphics = locations.map((location) => {
-					return new Graphic({
-						geometry: new Point({
-							longitude: location.longitude,
-							latitude: location.latitude,
-							spatialReference: {
-								wkid: 4326,
-							},
-						}),
-						attributes: {
-							id: location.id,
-							name: location.name,
-							address: location.address,
-							locality: location.locality,
-						},
-					});
-				});
 
-				const popupTemplate = {
-					title: "{name}",
-					content: "{address} {locality} AB",
-				};
-				const featureLayer = new FeatureLayer({
-					fields: [
-						{
-							name: "id",
-							type: "oid",
+			const graphics = locations.map((location) => {
+				return new Graphic({
+					geometry: new Point({
+						longitude: location.longitude,
+						latitude: location.latitude,
+						spatialReference: {
+							wkid: 4326,
 						},
-						{
-							name: "name",
-							type: "string",
-						},
-						{
-							name: "address",
-							type: "string",
-						},
-						{
-							name: "locality",
-							type: "string",
-						},
-					],
-					geometryType: "point",
-					spatialReference: { wkid: 4326 },
-					source: graphics,
-					popupTemplate: popupTemplate,
+					}),
+					attributes: {
+						id: location.id,
+						name: location.name,
+						address: location.address,
+						locality: location.locality,
+					},
 				});
-				map.add(featureLayer);
-			}
+			});
+
+			const featureLayer = new FeatureLayer({
+				fields: fields,
+				geometryType: "point",
+				spatialReference: { wkid: 4326 },
+				source: graphics,
+				popupTemplate: popupTemplate,
+			});
+
+			map.add(featureLayer);
 		}
 	}, [locations]);
 
