@@ -27,24 +27,50 @@ export default function Map({ locations }) {
 			});
 			if (locations) {
 				const graphics = locations.map((location) => {
-					return new Graphic(
-						new Point({
-							id: location.id,
+					return new Graphic({
+						geometry: new Point({
 							longitude: location.longitude,
 							latitude: location.latitude,
 							spatialReference: {
 								wkid: 4326,
 							},
-						})
-					);
+						}),
+						attributes: {
+							id: location.id,
+							name: location.name,
+							address: location.address,
+							locality: location.locality,
+						},
+					});
 				});
 
+				const popupTemplate = {
+					title: "{name}",
+					content: "{address} {locality} AB",
+				};
 				const featureLayer = new FeatureLayer({
-					fields: graphics.fields,
-					objectIdField: "id",
+					fields: [
+						{
+							name: "id",
+							type: "oid",
+						},
+						{
+							name: "name",
+							type: "string",
+						},
+						{
+							name: "address",
+							type: "string",
+						},
+						{
+							name: "locality",
+							type: "string",
+						},
+					],
 					geometryType: "point",
 					spatialReference: { wkid: 4326 },
 					source: graphics,
+					popupTemplate: popupTemplate,
 				});
 				map.add(featureLayer);
 			}
