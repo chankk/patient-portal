@@ -7,6 +7,7 @@ import styles from "@/app/map/map.module.css";
 import Point from "@arcgis/core/geometry/Point.js";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer.js";
 import Graphic from "@arcgis/core/Graphic.js";
+import Search from "@arcgis/core/widgets/Search.js";
 
 config.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
@@ -86,6 +87,15 @@ export default function Map({ locations }) {
 			});
 
 			map.add(featureLayer);
+
+			const searchWidget = new Search({
+				view: view,
+			});
+
+			view.ui.add(searchWidget, {
+				position: "top-right",
+				index: 2,
+			});
 		}
 	}, [locations]);
 
