@@ -73,6 +73,8 @@ export default function Map({ locations }) {
 			popupTemplate: {
 				title: "{name}",
 				content: "{address} {locality} AB",
+				overwriteActions: true,
+				actions: [],
 			},
 			renderer: {
 				type: "simple",
