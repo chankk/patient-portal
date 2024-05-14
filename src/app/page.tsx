@@ -20,18 +20,17 @@ const cardData = [
 		content: "Connect with your healthcare providers, find contact information and schedule appointments.",
 		href: "/doctor-directory",
 	},
+	{
+		heading: "Medical Map",
+		content: "Locate clinics, hospitals and healthcare providers near you.",
+		href: "/map",
+	},
 ];
 
 const cards = cardData.map((card) => {
 	return (
-		<Grid
-			item
-			key={card.heading}
-			lg={3}>
-			<Card
-				heading={card.heading}
-				content={card.content}
-				href={card.href}></Card>
+		<Grid item key={card.heading} lg={3}>
+			<Card heading={card.heading} content={card.content} href={card.href}></Card>
 		</Grid>
 	);
 });
@@ -44,10 +43,7 @@ export default function Home() {
 		<Box component="main">
 			<Typography variant="h4">Hello, {name}!</Typography>
 			<Typography variant="h5">{greeting}</Typography>
-			<Grid
-				container
-				my={1}
-				spacing={3}>
+			<Grid container my={1} spacing={3}>
 				{cards}
 			</Grid>
 		</Box>
