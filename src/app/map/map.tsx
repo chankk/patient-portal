@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import config from "@arcgis/core/config";
 import ArcgisMap from "@arcgis/core/Map";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer.js";
