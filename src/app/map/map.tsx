@@ -92,10 +92,14 @@ export default function Map({ locations }: { locations: location[] }) {
 				if (tableRef.current !== null) {
 					const searchWidget = new Search({
 						view: view,
+						popupEnabled: false,
+						resultGraphicEnabled: false,
 					});
 
+					view.ui.move(["zoom"], "bottom-right");
+
 					view.ui.add(searchWidget, {
-						position: "top-right",
+						position: "top-left",
 						index: 0,
 					});
 
