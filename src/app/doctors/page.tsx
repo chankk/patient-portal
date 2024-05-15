@@ -3,10 +3,9 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Card from "@/app/components/card";
 import { fetchDoctors } from "@/app/lib/data";
-import { notFound } from "next/navigation";
 
 export default async function Page() {
-	const doctors = await fetchDoctors().catch((error) => notFound());
+	const doctors = await fetchDoctors();
 	return (
 		<Box component="main">
 			<Typography variant="h4">Doctor Directory</Typography>

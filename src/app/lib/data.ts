@@ -13,8 +13,7 @@ export async function fetchDoctors(){
         });
         return doctors;
     } catch (error) {
-        console.error("Database Error:", error);
-        throw new Error("Failed to fetch doctors");
+        throw new Error("Database Error: Failed to fetch doctors");
     }
 }
 
@@ -33,8 +32,7 @@ export async function fetchDoctor(doctorID: string){
         });
         return doctor;
     } catch (error) {
-        console.error("Database error:", error);
-        throw new Error(`Failed to fetch doctor with ID: ${doctorID}`);
+        throw new Error(`Database error: Failed to fetch doctor with ID: ${doctorID}`);
     }
 }
 
@@ -44,7 +42,6 @@ export async function fetchLocations(){
         return JSON.stringify(locations);
     }
     catch (error){
-        console.error("Database error:", error);
-        throw new Error(`Failed to fetch locations`);
+        throw new Error(`Database error: Failed to fetch locations`);
     }
 }
