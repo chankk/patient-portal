@@ -8,9 +8,13 @@ import TopAppBar from "@/app/navigation/top-app-bar";
 export default function Navigation() {
 	const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false);
 
-	const toggleDrawer = () => {
+	function toggleDrawer() {
 		setDrawerOpen(!isDrawerOpen);
-	};
+	}
+
+	function closeDrawer() {
+		setDrawerOpen(false);
+	}
 
 	return (
 		<Box>
@@ -18,7 +22,7 @@ export default function Navigation() {
 				<TopAppBar handleMenuClick={toggleDrawer} />
 			</Grid>
 			<Grid item xs="auto">
-				<NavigationDrawer isOpen={isDrawerOpen} />
+				<NavigationDrawer isOpen={isDrawerOpen} close={closeDrawer} />
 			</Grid>
 		</Box>
 	);

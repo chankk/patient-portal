@@ -12,10 +12,17 @@ import useTheme from "@mui/material/styles/useTheme";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { navLinks } from "@/app/navigation/nav-links";
 
-export default function NavigationDrawer({ isOpen }: { isOpen: boolean }) {
+export default function NavigationDrawer({ isOpen, close }: { isOpen: boolean; close: () => void }) {
 	const theme = useTheme();
 	const xs = useMediaQuery(theme.breakpoints.only("xs"));
-	const drawerWidth = "15em";
+	const drawerWidth = xs ? "100%" : "15em";
+
+	function handleClick() {
+		// close temporary drawer on navigate (for small screens)
+		if (xs) {
+			close();
+		}
+	}
 
 	return (
 		<Drawer
@@ -30,7 +37,7 @@ export default function NavigationDrawer({ isOpen }: { isOpen: boolean }) {
 				<List>
 					{navLinks.map((item) => (
 						<ListItem key={item.label} disablePadding>
-							<ListItemButton component={NextLink} href={item.path}>
+							<ListItemButton component={NextLink} href={item.path} onClick={handleClick}>
 								<ListItemIcon>{item.icon}</ListItemIcon>
 								<ListItemText>{item.label}</ListItemText>
 							</ListItemButton>
