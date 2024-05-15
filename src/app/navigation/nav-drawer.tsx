@@ -10,12 +10,14 @@ import NextLink from "next/link";
 import Toolbar from "@mui/material/Toolbar";
 import useTheme from "@mui/material/styles/useTheme";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { usePathname } from "next/navigation";
 import { navLinks } from "@/app/navigation/nav-links";
 
 export default function NavigationDrawer({ isOpen, close }: { isOpen: boolean; close: () => void }) {
 	const theme = useTheme();
 	const xs = useMediaQuery(theme.breakpoints.only("xs"));
 	const drawerWidth = xs ? "100%" : "15em";
+	const currentPath = usePathname();
 
 	function handleClick() {
 		// close temporary drawer on navigate (for small screens)
@@ -37,7 +39,7 @@ export default function NavigationDrawer({ isOpen, close }: { isOpen: boolean; c
 				<List>
 					{navLinks.map((item) => (
 						<ListItem key={item.label} disablePadding>
-							<ListItemButton component={NextLink} href={item.path} onClick={handleClick}>
+							<ListItemButton component={NextLink} href={item.path} onClick={handleClick} selected={currentPath.startsWith(item.path)}>
 								<ListItemIcon>{item.icon}</ListItemIcon>
 								<ListItemText>{item.label}</ListItemText>
 							</ListItemButton>
