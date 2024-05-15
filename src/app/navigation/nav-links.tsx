@@ -15,19 +15,19 @@ export const navLinks: NavLink[] = [
 	{
 		label: "Health Records",
 		description: "Access your test results, immunization record and other medical information.",
-		path: "/health-records",
+		path: "/records",
 		icon: <ArticleIcon />,
 	},
 	{
 		label: "Past Visits",
-		description: "Review past medical visits, such as hospitlizations and specialist appointments.",
-		path: "/past-visits",
+		description: "Review past medical visits, such as hospitlizations and doctor appointments.",
+		path: "/visits",
 		icon: <HistoryIcon />,
 	},
 	{
 		label: "Doctor Directory",
 		description: "Connect with your healthcare providers, find contact information and schedule appointments.",
-		path: "/doctor-directory",
+		path: "/doctors",
 		icon: <PersonIcon />,
 	},
 	{

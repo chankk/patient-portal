@@ -50,7 +50,7 @@ const rows: TestResultProps[] = [
 	{ id: 4, date: new Date("2022-11-25"), category: "blood", test: "BMP", result: "Normal", doctor: "Salem Miles", details: "" },
 ];
 
-export default function TestResults() {
+export default function Page() {
 	return (
 		<Box>
 			<Typography variant="h4">Test Results</Typography>

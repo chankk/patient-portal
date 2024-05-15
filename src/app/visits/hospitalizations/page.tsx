@@ -46,7 +46,7 @@ const rows: HospitalizationProps[] = [
 	{ id: 1, date: new Date("2023-11-25"), diagnosis: "broken leg", treatment: "surgery", doctor: "Phineas Lee", hospital: "Goodwin Health", details: "" },
 ];
 
-export default function Hospitalization() {
+export default function Page() {
 	return (
 		<Box>
 			<Typography variant="h4">Hospitalizations</Typography>

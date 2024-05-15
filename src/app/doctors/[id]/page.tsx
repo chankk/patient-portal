@@ -34,8 +34,8 @@ const rows: DoctorProps[] = [
 	{ id: 2, date: new Date("2023-10-25"), purpose: "Medication check-in", details: "" },
 ];
 
-export default async function Doctor({ searchParams }: { searchParams: { id: string } }) {
-	const doctor = await fetchDoctor(searchParams.id).catch((error) => notFound());
+export default async function Doctor({ params }: { params: { id: string } }) {
+	const doctor = await fetchDoctor(params.id).catch((error) => notFound());
 	return (
 		<Box>
 			<Grid container direction="row" justifyContent="space-between" alignItems="flex-start">

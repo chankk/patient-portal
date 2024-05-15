@@ -5,7 +5,7 @@ import Card from "@/app/components/card";
 import { fetchDoctors } from "@/app/lib/data";
 import { notFound } from "next/navigation";
 
-export default async function DoctorDirectory() {
+export default async function Page() {
 	const doctors = await fetchDoctors().catch((error) => notFound());
 	return (
 		<Box component="main">
@@ -16,7 +16,7 @@ export default async function DoctorDirectory() {
 						<Card
 							heading={`${doctor.first_name} ${doctor.last_name}`}
 							content={doctor.doctor_specialty?.name ?? ""}
-							href={`/doctor-directory/doctor?id=${doctor.id}`}
+							href={`/doctors/${doctor.id}`}
 						/>
 					</Grid>
 				))}

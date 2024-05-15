@@ -8,12 +8,12 @@ const cardData = [
 	{
 		heading: "Test Results",
 		content: "Review your test results, such as lab work and diagnostic imaging.",
-		href: "/health-records/test-results",
+		href: "/records/tests",
 	},
 	{
 		heading: "Immunizations",
 		content: "Summary of your immunization history.",
-		href: "/health-records/immunization",
+		href: "/records/immunizations",
 	},
 ];
 
@@ -25,7 +25,7 @@ const cards = cardData.map((card) => {
 	);
 });
 
-export default function HealthRecords() {
+export default function Page() {
 	return (
 		<Box component="main">
 			<Typography variant="h4">Health Records</Typography>

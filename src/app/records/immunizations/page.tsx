@@ -43,7 +43,7 @@ const rows: ImmunizationProps[] = [
 	{ id: 9, date: new Date("2009-10-12"), vaccine: "Influencza", disease: "Common Flu", details: "" },
 ];
 
-export default function Immunization() {
+export default function Page() {
 	return (
 		<Box>
 			<Typography variant="h4">Immunization</Typography>

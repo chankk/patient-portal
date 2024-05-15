@@ -47,7 +47,7 @@ const rows: AppointmentProps[] = [
 	{ id: 1, date: new Date("2023-11-25"), doctor: "Abraham Jones", type: "Psychiatry", purpose: "Assessment", location: "Trinity Health", details: "" },
 ];
 
-export default function Appointment() {
+export default function Page() {
 	return (
 		<Box>
 			<Typography variant="h4">Past Appointments</Typography>

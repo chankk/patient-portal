@@ -6,7 +6,7 @@ export default function NotFound() {
 		<main>
 			<h2>404 Not Found</h2>
 			<p>Could not find the requested doctor.</p>
-			<Button variant="contained" LinkComponent={Link} href="/doctor-directory">
+			<Button variant="contained" LinkComponent={Link} href="/doctors">
 				Back to Doctor Directory
 			</Button>
 		</main>
