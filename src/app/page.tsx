@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Card from "@/app/components/card";
 import { navLinks } from "@/app/navigation/nav-links";
 
-const name = "Rosalie";
+const name = "Patient";
 const greeting = "It's great to have you here.";
 
 export default function Home() {
