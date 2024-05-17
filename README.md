@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Patient Portal
 
-## Getting Started
+:construction: This project is under construction.
 
-First, run the development server:
+**Demos**:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+-   [View the live website](https://patient-portal-lake.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-   [See initial designs on Figma](https://www.figma.com/proto/M3cqtNItwATCM8WwJEYlA4/Patient-Portal?node-id=141-7974&starting-point-node-id=141%3A7985&t=KuSfR42GYZRBcTku-1)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Description
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**Goal:** Prototype a website where patients can access their medical records, communicate with healthcare providers, and locate healthcare services.
 
-## Learn More
+**Target Users:** Albertan patients
 
-To learn more about Next.js, take a look at the following resources:
+**Background:** This project started as a technical assessment. I was given 10 hours to create wireframes and a front-end implementation of a patient portal web application for desktop. Since then, I've continued development to grow my skills. Data is fictional and loosely based on Alberta's healthcare system.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Technology
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Web:**
 
-## Deploy on Vercel
+-   **React**: JavaScript library used to build the user interface.
+-   **Next.js**: React framework for server-side rendering and static-site generation.
+-   **Material UI**: React UI framework, for components based on Google's Material Design.
+-   **TypeScript**: JavaScript superset that adds static types.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Data:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   **PostgreSQL**: Relational database used to store and manage data.
+-   **Prisma**: Object Relational Mapping tool that simplifies database management and querying.
+
+**Deployment:**
+
+-   **Vercel**: Cloud platform used to deploy the app.
+
+**Mapping:**
+
+-   **ArcGIS Maps SDK for JavaScript**: Collection of tools to build mapping applications and access location services & geospatial features.
+
+**Design:**
+
+-   **Figma**: User interface design tool used for initial prototyping.
+
+## Planned Improvements
+
+**General:**
+
+-   Consolidate and clean up TypeScript files.
+-   Add breadcumbs to improve navigation and help orient users.
+-   Explore alternative UI components to improve the usability and visual design of the existing interface.
+
+**Health Records:**
+
+-   Design a database model to store patient data.
+-   Replace hard-coded patient data.
+-   Improve how records are displayed on mobile devices.
+
+**Past Visits:**
+
+-   Design a database model to store past visit data.
+-   Replace hard coded visit data.
+-   Improve how visits are displayed on mobile devices.
+
+**Doctor Directory:**
+
+-   Show more useful data per doctor.
+-   Add search, filter, sort and other functionality.
+
+**Medical Map**
+
+-   Differentiate hospitals from clinics.
+-   Add information to make popups useful (e.g. contact information, hours, doctors).
